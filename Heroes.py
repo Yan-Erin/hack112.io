@@ -49,8 +49,6 @@ class Hero(pygame.sprite.Sprite):
             if checkcollision(self.rect.x, self.rect.y, 28, 28, x, y, 20, 20):
                 self.rect.x -= self.dx
                 self.rect.y -= self.dy
-
-
     def attack(self):
         pass
 

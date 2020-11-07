@@ -14,19 +14,26 @@ cubePiece = [
     [   True,   True],
     [   True,   True]
 ]
-
+tPiece= [
+    [False,True,False],
+    [True,True,True],
+    [False,True,False]
+]
 fortPiece = [
-    [   True,   True,   True,   True,   True],
-    [   False,   False,   False,   False,   True],
-    [   False,   False,   False,   False,   False],
-    [   True,   False,   False,   False,   False],
-    [   True,   True,   True,   True,   True]
+    [   True,   True,   True,   True,   ],
+    [   False,   False,   False,   False,  ],
+    [   False,   False,   False,   False,   ],
+    [   True,   False,   False,   False,   ],
+    [   True,   True,   True,   True,   ]
 ]
 
 longPiece = [ [True], [True], [True], [True] ]
 
 wallPieces = [fortPiece, longPiece, cubePiece, rightPiece]
 
+
+bgImag = pygame.image.load('images/background.jpg')
+bgImag= pygame.transform.scale(bgImag, (1000, 500))
 
 cabinetImg= pygame.image.load('images/cabinet.png')
 cabinetImg = pygame.transform.scale(cabinetImg, (18, 20))
@@ -75,9 +82,6 @@ makeWalls(20)
 
 
 def redrawAll(screen):
-    for row in range(500//20):
-        for col in range (1000//20):
-            (x1,y1)= getCellBounds(row,col)
-            pygame.draw.rect(screen, (100,100,100), pygame.Rect(x1,y1,20,20),1)
+    screen.blit(bgImag, (5,5))
     for i in walls:
         Wall(i[0],i[1],walls[i], screen)
