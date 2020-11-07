@@ -1,32 +1,30 @@
-  import math
-  import pygame
-  
-  
-  class Weapon(pygame.weapon.Weapon):
+class Projectile(pygame.sprite.Sprite):
 
-    def init(self):
-        pygame.Weapon.Weapon_init_(self)
-        self.bx = 0
-        self.by = 0
-        self.bdx = 0
-        self.bdy = 0
-        self.bspeed = 20
-        self.bdmg = 30
-        self.px = 0
-        self.py = 0
-        self.pdx = 0
-        self.pdy = 0
-        self.pspeed = 40
-        self.pdmg = 15
-    def control(self, angle):
-        self.bdx = self.speed * math.cos(angle)
-        self.bdy = self.speed * math.sin(angle)
-        self.pdx = self.speed * math.cos(angle)
-        self.pdy = self.speed * math.sin(angle)
+    def __init__(self, x, y, direction):
+        self.rect = self.image.get_rect()
+        self.rect.x = x
+        self.rect.y = y
+        self.direction = direction
+        self.dx = None
+        self.dy = None
 
     def move(self):
-        self.bx += self.bdx
-        self.by += self.bdy
-        self.px += self.pdx
-        self.py += self.pdy
-        
+        pass
+
+
+class Plane(Projectile):
+
+    def __init__(self, x, y, direction):
+        self.damage = 5
+        self.speed = 5
+        self.image = pygame.image.load(os.path.join("images", ".png"))
+        Projectile.__init__(self, x, y, direction)
+
+
+class Book(Projectile):
+
+    def __init__(self, x, y, direction):
+        self.damage = 10
+        self.speed = 5
+        self.image = pygame.image.load(os.path.join("images", ".png"))
+        Projectile.__init__(self, x, y, direction)

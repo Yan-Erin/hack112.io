@@ -1,10 +1,9 @@
 import pygame
+import Walls, Heroes, Pickups
+
 pygame.init()
-screen = pygame.display.set_mode((500, 500))
+screen = pygame.display.set_mode((1010, 510))
 done = False
-<<<<<<< Updated upstream
-while not done:
-=======
 FPS = 60
 clock = pygame.time.Clock()
 
@@ -41,13 +40,10 @@ def instructionsScreen(screen, start):
     while start== True:
         screen.blit(intructionsImg, (0,0))
         pygame.display.update()
->>>>>>> Stashed changes
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 done = True
-<<<<<<< Updated upstream
         pygame.display.flip()
-=======
                 pygame.quit()
 instructionsScreen(screen, True)
 
@@ -87,4 +83,3 @@ while not done:
     pygame.draw.rect(screen, (255,0,0), (player2.rect.x,player2.rect.y-5, (28*(.01*player2.health)), 5))
     pygame.display.flip()
     clock.tick(FPS)
->>>>>>> Stashed changes
