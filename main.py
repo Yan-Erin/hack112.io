@@ -2,6 +2,7 @@ import pygame
 import Walls, Heroes
 
 pygame.init()
+screen = pygame.display.set_mode((1010, 510))
 done = False
 FPS = 60
 clock = pygame.time.Clock()
