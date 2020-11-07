@@ -10,7 +10,7 @@ class Hero(pygame.sprite.Sprite):
         self.y = 0
         self.dx = 0
         self.dy = 0
-        self.speed = 2
+        self.speed = 2.2
         self.health = 100
         self.armor = 0
         self.direction = [0, 0] # dx, dy

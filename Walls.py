@@ -58,7 +58,7 @@ def isValidWall(x,y,walls,chosenPiece):
             if chosenPiece[i][j] and (((x+i+1, y+j+1) in walls) or ((x+i, y+j-3) in walls) or ((x+i-3, y+j) in walls) or ((x+i-3, y+j-3) in walls) or ((x+i, y+j+3) in walls) or ((x+i+3, y+j) in walls) or ((x+i+2, y+j+2) in walls) or ((x+i-1, y+j)in walls) or ((x+i, y+j-1)in walls) or ((x+i-1, y+j-1)in walls) or((x+i-2, y+j-2)in walls) or ((x+i, y+j-2)in walls) or ((x+i-2, y+j)in walls) or ((x+i+1, y+j)in walls) or ((x+i, y+j+1)in walls)):
                 return False
     return True
-walls=set()
+walls={}
 
 def makeWalls(numOfPieces):
     l=[cabinetImg, chairImg]
@@ -72,7 +72,7 @@ def makeWalls(numOfPieces):
         for w in range(len(chosenPiece)):
             for j in range(len(chosenPiece[0])):
                 if chosenPiece[w][j]:
-                    walls.add((x+w,y+j, random.choice(l)))
+                    walls[(x+w,y+j)]= random.choice(l)
 makeWalls(35)
 
 
@@ -82,4 +82,4 @@ def redrawAll(screen):
             (x1,y1)= getCellBounds(row,col)
             pygame.draw.rect(screen, (255,255,255), pygame.Rect(x1,y1,20,20),1)
     for i in walls:
-        Wall(i[0],i[1],i[2], screen)
+        Wall(i[0],i[1],walls[i], screen)
