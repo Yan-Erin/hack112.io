@@ -59,6 +59,7 @@ def endScreen(name,screen):
     else:
         screen.blit(gameover2, (0,0))
         pygame.display.update()
+player1.health=50
 while not done:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -74,7 +75,6 @@ while not done:
     if keys[pygame.K_d] and player1.rect.x + 28 < 1005: player1.direction[0] = 1
     elif keys[pygame.K_a] and player1.rect.x > 0: player1.direction[0] = -1
     else: player1.direction[0] = 0
-
     if keys[pygame.K_UP] and player2.rect.y > 0: player2.direction[1] = 1
     elif keys[pygame.K_DOWN] and player2.rect.y + 28 < 505: player2.direction[1] = -1
     else: player2.direction[1] = 0
@@ -100,6 +100,12 @@ while not done:
     pygame.draw.rect(screen, (255,0,0), (player1.rect.x,player1.rect.y-5,(28*(.01*player1.health)),5))
     pygame.draw.rect(screen, (150,150,150), (player2.rect.x,player2.rect.y-5,28, 5))
     pygame.draw.rect(screen, (255,0,0), (player2.rect.x,player2.rect.y-5, (28*(.01*player2.health)), 5))
+    Heroes.hitBlue(player1, player1.rect.x,player1.rect.y, Pickups.pickups)
+    Heroes.hitHeart(player1,player1.rect.x,player1.rect.y, Pickups.pickups )
+    Heroes.hitBlue(player2, player2.rect.x,player2.rect.y, Pickups.pickups)
+    Heroes.hitHeart(player2,player2.rect.x,player2.rect.y, Pickups.pickups )
+    
+    print(player1.armor)
     if player1.health==0:
         endScreen("taylor",screen)
     elif player2.health==0:
