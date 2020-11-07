@@ -31,6 +31,9 @@ def startScreen(screen, intro):
             mouse = pygame.mouse.get_pos()
             if event.type==pygame.MOUSEBUTTONDOWN:
                 intro = False
+            if event.type == pygame.QUIT:
+                done = True
+                pygame.quit()
 
 startScreen(screen, True)
 def instructionsScreen(screen, start):
@@ -41,6 +44,9 @@ def instructionsScreen(screen, start):
             mouse = pygame.mouse.get_pos()
             if event.type==pygame.MOUSEBUTTONDOWN:
                 start = False
+            if event.type == pygame.QUIT:
+                done = True
+                pygame.quit()
 instructionsScreen(screen, True)
 
 while not done:
