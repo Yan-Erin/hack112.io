@@ -10,17 +10,17 @@ clock = pygame.time.Clock()
 player_list = pygame.sprite.Group()
 
 player1 = Heroes.Taylor()
-player1.rect.x = 100
-player1.rect.y = 100
+player1.rect.x = 50
+player1.rect.y = 40
 player_list.add(player1)
 
 player2 = Heroes.Kosbie()
-player2.rect.x = 400
-player2.rect.y = 400
+player2.rect.x = 900
+player2.rect.y = 440
 player_list.add(player2)
 startImg= pygame.image.load('images/splashScreen.jpg')
 startImg = pygame.transform.scale(startImg, (1010, 510))
-intructionsImg = pygame.image.load('images/splashScreen.jpg')
+intructionsImg = pygame.image.load('images/instructionsScreen.jpg')
 intructionsImg = pygame.transform.scale(intructionsImg, (1010, 510))
 
 def startScreen(screen, intro):
