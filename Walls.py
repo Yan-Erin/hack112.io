@@ -71,11 +71,11 @@ makeWalls(35)
 def makeSizeBoosters(numOfPieces):
     sizeBoosters=set()
     for i in range( numOfPieces):
-        x=random.randint(0,25)
-        y=random.randint(0,50)
+        x=random.randint(0,24)
+        y=random.randint(0,49)
         while ((x,y) in sizeBoosters) or ((x,y) in obstacle.values()):
-            x=random.randint(0,25)
-            y=random.randint(0,50)
+            x=random.randint(0,24)
+            y=random.randint(0,49)
         sizeBoosters.add((x,y))
     obstacle["SizeBoosters"]= sizeBoosters
 makeSizeBoosters(10)
@@ -83,11 +83,11 @@ makeSizeBoosters(10)
 def makeHearts(numOfPieces):
     hearts=set()
     for i in range( numOfPieces):
-        x=random.randint(0,25)
-        y=random.randint(0,50)
+        x=random.randint(0,24)
+        y=random.randint(0,49)
         while ((x,y) in hearts) or  ((x,y) in obstacle.values()):
-            x=random.randint(0,25)
-            y=random.randint(0,50)
+            x=random.randint(0,24)
+            y=random.randint(0,49)
         hearts.add((x,y))
     obstacle["Hearts"] = hearts
 makeHearts(15)
