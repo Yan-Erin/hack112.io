@@ -46,10 +46,9 @@ def getCellBounds(row,col):
     return (x1,y1)
     
 
-def Wall(row,col,screen):
-    l=[chairImg, cabinetImg]
+def Wall(row,col, image, screen):
     (x, y) = getCellBounds(row,col)
-    screen.blit(random.choice(l), (x,y))
+    screen.blit(image, (x,y))
 
 def isValidWall(x,y,walls,chosenPiece):
     if (x,y) in walls:
@@ -62,6 +61,7 @@ def isValidWall(x,y,walls,chosenPiece):
 walls=set()
 
 def makeWalls(numOfPieces):
+    l=[cabinetImg, chairImg]
     for i in range( numOfPieces):
         chosenPiece=random.choice(wallPieces)
         x=random.randint(0,22)
@@ -72,7 +72,7 @@ def makeWalls(numOfPieces):
         for w in range(len(chosenPiece)):
             for j in range(len(chosenPiece[0])):
                 if chosenPiece[w][j]:
-                    walls.add((x+w,y+j))
+                    walls.add((x+w,y+j, random.choice(l)))
 makeWalls(35)
 
 
@@ -82,4 +82,4 @@ def redrawAll(screen):
             (x1,y1)= getCellBounds(row,col)
             pygame.draw.rect(screen, (255,255,255), pygame.Rect(x1,y1,20,20),1)
     for i in walls:
-        Wall(i[0],i[1], screen)
+        Wall(i[0],i[1],i[2], screen)
