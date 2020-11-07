@@ -35,10 +35,10 @@ wallPieces= [iPiece,jPiece, lPiece,sPiece,tPiece, zPiece]
 
 
 cabinetImg= pygame.image.load('images/cabinet.png')
-cabinetImg = pygame.transform.scale(cabinetImg, (20, 20))
+cabinetImg = pygame.transform.scale(cabinetImg, (18, 20))
 
 chairImg = pygame.image.load('images/chair.png')
-chairImg = pygame.transform.scale(chairImg, (20, 20))
+chairImg = pygame.transform.scale(chairImg, (18, 20))
 
 def character1(row, col):
     (x, y) = getCellBounds(row, col)
