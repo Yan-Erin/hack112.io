@@ -33,9 +33,8 @@ zPiece = [
     [ False,  True,  True ]
     ]
 wallPieces= [iPiece,jPiece, lPiece,sPiece,tPiece, zPiece]
-walls=[]
-sizeBoosters=set()
-hearts=set()
+
+obstacle={}
 
 def getCellBounds(row,col):
     y1= row*(20) +margin
@@ -55,6 +54,7 @@ def Heart(row,col):
 
 
 def makeWalls(numOfPieces):
+    walls=set()
     for i in range( numOfPieces):
         chosenPiece=random.choice(wallPieces)
         x=random.randint(0,22)
@@ -62,30 +62,36 @@ def makeWalls(numOfPieces):
         for w in range(len(chosenPiece)):
             for j in range(len(chosenPiece[0])):
                 if chosenPiece[w][j]:
-                    walls.append((x+w,y+j))
+                    walls.add((x+w,y+j))
+    obstacle["Walls"]= walls
 makeWalls(35)
-walls=set(walls)
+
 
 
 def makeSizeBoosters(numOfPieces):
+    sizeBoosters=set()
     for i in range( numOfPieces):
         x=random.randint(0,25)
         y=random.randint(0,50)
-        while ((x,y) in sizeBoosters) or ((x,y) in walls):
+        while ((x,y) in sizeBoosters) or ((x,y) in obstacle.values()):
             x=random.randint(0,25)
             y=random.randint(0,50)
         sizeBoosters.add((x,y))
+    obstacle["SizeBoosters"]= sizeBoosters
 makeSizeBoosters(10)
 
 def makeHearts(numOfPieces):
+    hearts=set()
     for i in range( numOfPieces):
         x=random.randint(0,25)
         y=random.randint(0,50)
-        while ((x,y) in hearts) or ((x,y) in walls) or ((x,y)in sizeBoosters):
+        while ((x,y) in hearts) or  ((x,y) in obstacle.values()):
             x=random.randint(0,25)
             y=random.randint(0,50)
         hearts.add((x,y))
+    obstacle["Hearts"] = hearts
 makeHearts(15)
+
 
 
 while not done:
@@ -94,12 +100,14 @@ while not done:
                 for col in range (1000//20):
                     (x1,y1)= getCellBounds(row,col)
                     pygame.draw.rect(screen, (255,255,255), pygame.Rect(x1,y1,20,20),1)
-        for wall in walls:
-            Wall(wall[0],wall[1])
-        for booster in sizeBoosters:
-            SizeBooster(booster[0],booster[1])
-        for heart in hearts:
-            Heart(heart[0],heart[1])
+        for i in obstacle:
+            for j in obstacle[i]:
+                if i == "Walls":
+                    Wall(j[0],j[1])
+                elif i=="SizeBoosters":
+                    SizeBooster(j[0],j[1])
+                elif i== "Hearts":
+                    Heart(j[0],j[1])
         if event.type == pygame.QUIT:
             done = True
         pygame.display.flip()
