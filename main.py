@@ -24,7 +24,7 @@ intructionsImg = pygame.image.load('images/instructionsScreen.jpg')
 intructionsImg = pygame.transform.scale(intructionsImg, (1010, 510))
 
 def startScreen(screen, intro):
-    while intro==True:
+    while intro == True:
         screen.blit(startImg, (0,0))
         pygame.display.update()
         for event in pygame.event.get():
@@ -37,13 +37,12 @@ def startScreen(screen, intro):
 startScreen(screen, True)
 
 def instructionsScreen(screen, start):
-    while start== True:
+    while start == True:
         screen.blit(intructionsImg, (0,0))
         pygame.display.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 done = True
-        pygame.display.flip()
                 pygame.quit()
 instructionsScreen(screen, True)
 
