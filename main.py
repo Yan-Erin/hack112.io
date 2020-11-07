@@ -7,17 +7,21 @@ done = False
 FPS = 60
 clock = pygame.time.Clock()
 
-player_list = pygame.sprite.Group()
+players_list = pygame.sprite.Group()
+plane = None
+plane_list = pygame.sprite.Group()
+pencil = None
+pencil_list = pygame.sprite.Group()
 
 player1 = Heroes.Taylor()
 player1.rect.x = 50
 player1.rect.y = 40
-player_list.add(player1)
+players_list.add(player1)
 
 player2 = Heroes.Kosbie()
 player2.rect.x = 900
 player2.rect.y = 440
-player_list.add(player2)
+players_list.add(player2)
 startImg= pygame.image.load('images/splashScreen.jpg')
 startImg = pygame.transform.scale(startImg, (1010, 510))
 intructionsImg = pygame.image.load('images/instructionsScreen.jpg')
@@ -26,8 +30,9 @@ gameover1=  pygame.image.load('images/gameover1.jpg')
 gameover1 = pygame.transform.scale(gameover1, (1010, 510))
 gameover2=  pygame.image.load('images/gameover2.jpg')
 gameover2 = pygame.transform.scale(gameover2, (1010, 510))
+
 def startScreen(screen, intro):
-    while intro==True:
+    while intro == True:
         screen.blit(startImg, (0,0))
         pygame.display.update()
         for event in pygame.event.get():
@@ -36,17 +41,13 @@ def startScreen(screen, intro):
             if event.type == pygame.QUIT:
                 done = True
                 pygame.quit()
-
 startScreen(screen, True)
+
 def instructionsScreen(screen, start):
-    while start== True:
+    while start == True:
         screen.blit(intructionsImg, (0,0))
         pygame.display.update()
         for event in pygame.event.get():
-<<<<<<< Updated upstream
-            mouse = pygame.mouse.get_pos()
-=======
->>>>>>> Stashed changes
             if event.type==pygame.MOUSEBUTTONDOWN:
                 start = False
             if event.type == pygame.QUIT:
@@ -70,39 +71,39 @@ while not done:
     keys = pygame.key.get_pressed()
     if keys[pygame.K_w] and player1.rect.y > 0: player1.direction[1] = 1
     elif keys[pygame.K_s] and player1.rect.y + 28 < 505: player1.direction[1] = -1
-    if keys[pygame.K_w]: player1.direction[1] = 1
-    elif keys[pygame.K_s]: player1.direction[1] = -1
     else: player1.direction[1] = 0
     if keys[pygame.K_d] and player1.rect.x + 28 < 1005: player1.direction[0] = 1
     elif keys[pygame.K_a] and player1.rect.x > 0: player1.direction[0] = -1
     else: player1.direction[0] = 0
+    if keys[pygame.K_SPACE]: 
+        plane_list.empty()
+        plane = player1.attack()
+        plane_list.add(plane)
 
     if keys[pygame.K_UP] and player2.rect.y > 0: player2.direction[1] = 1
     elif keys[pygame.K_DOWN] and player2.rect.y + 28 < 505: player2.direction[1] = -1
     else: player2.direction[1] = 0
     if keys[pygame.K_RIGHT] and player2.rect.x + 28 < 1005: player2.direction[0] = 1
     elif keys[pygame.K_LEFT] and player2.rect.x > 0: player2.direction[0] = -1
-    if keys[pygame.K_UP]: player2.direction[1] = 1
-    elif keys[pygame.K_DOWN]: player2.direction[1] = -1
-    else: player2.direction[1] = 0
-    if keys[pygame.K_RIGHT]: player2.direction[0] = 1
-    elif keys[pygame.K_LEFT]: player2.direction[0] = -1
-
     else: player2.direction[0] = 0
+    if keys[pygame.K_RETURN]: 
+        pencil_list.empty()
+        pencil = player2.attack()
+        pencil_list.add(pencil)
 
     if player1.direction != [0, 0]: player1.move()
     if player2.direction != [0, 0]: player2.move()
 
+    if pencil: pencil.move()
+    if plane: plane.move()
+
     screen.fill((0, 0, 0))
     Walls.redrawAll(screen)
-<<<<<<< Updated upstream
-    Pickups.redrawAll (screen)
-    player1.update()
-    player_list.draw(screen)
-=======
-    pickups.redrawAll (screen)
-    sprites_list.draw(screen)
->>>>>>> Stashed changes
+    pickups.redrawAll(screen)
+    players_list.draw(screen)
+    plane_list.draw(screen)
+    pencil_list.draw(screen)
+
     pygame.draw.rect(screen, (150,150,150), (player1.rect.x,player1.rect.y-5, 28, 5))
     pygame.draw.rect(screen, (255,0,0), (player1.rect.x,player1.rect.y-5,(28*(.01*player1.health)),5))
     pygame.draw.rect(screen, (150,150,150), (player2.rect.x,player2.rect.y-5,28, 5))

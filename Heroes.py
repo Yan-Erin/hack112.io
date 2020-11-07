@@ -1,6 +1,9 @@
 import pygame
 import os
-import math, Walls
+import math
+import weapons
+import Walls
+
 def checkcollision(x,y,w,h,x2,y2,w2,h2):
     if x + w >= x2 and y + h >= y2 and x <= x2 + w2 and y <= y2 + h2:
         print("collided")
@@ -18,7 +21,7 @@ class Hero(pygame.sprite.Sprite):
         self.health = 100
         self.armor = 0
         self.direction = [0, 0] # dx, dy
-        self.inventory = ["plane", "sneakers"]
+        self.facing = [0, 0]
         self.images = []
         for i in range(4):
             img = pygame.image.load(os.path.join("images", f"{self.name}{str(i)}.png"))
@@ -35,10 +38,18 @@ class Hero(pygame.sprite.Sprite):
             [180,   225,    135]
         ]
         i, j = self.direction
-        if i == 0 and j == 1: self.image = self.images[3]
-        if i == 0 and j == -1: self.image = self.images[0]
-        if i == 1 and j == 0: self.image = self.images[1]
-        if i == -1 and j == 0: self.image = self.images[2]
+        if i == 0 and j == 1: 
+            self.facing = [0, 1]
+            self.image = self.images[3]
+        if i == 0 and j == -1: 
+            self.facing = [0, -1]
+            self.image = self.images[0]
+        if i == 1 and j == 0: 
+            self.facing = [1, 0]
+            self.image = self.images[1]
+        if i == -1 and j == 0: 
+            self.facing = [-1, 0]
+            self.image = self.images[2]
         angle = angles[i][j] * math.pi / 180
         self.dx = self.speed * math.cos(angle)
         self.dy = self.speed * math.sin(angle)
@@ -49,8 +60,6 @@ class Hero(pygame.sprite.Sprite):
             if checkcollision(self.rect.x, self.rect.y, 28, 28, x, y, 20, 20):
                 self.rect.x -= self.dx
                 self.rect.y -= self.dy
-    def attack(self):
-        pass
 
 
 class Kosbie(Hero):
@@ -58,13 +67,17 @@ class Kosbie(Hero):
         self.name = "koz"
         Hero.__init__(self)
 
-    def specialAbility(self):
-        pass
+    #def attack(self, projectilesList):
+    def attack(self):
+        return weapons.Pencil(self.rect.x, self.rect.y, self.facing)
+        #projectilesList.append(Pencil(self.rect.x, self.rect.y, self.facing))
 
 class Taylor(Hero):
     def __init__(self):
         self.name = "taylor"
         Hero.__init__(self)
 
-    def specialAbility(self):
-        pass
+    #def attack(self, projectilesList):
+    def attack(self):
+        return weapons.Plane(self.rect.x, self.rect.y, self.facing)
+        #projectilesList.append(Plane(self.rect.x, self.rect.y, self.facing))
