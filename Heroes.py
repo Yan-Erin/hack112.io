@@ -14,8 +14,13 @@ class Hero(pygame.sprite.Sprite):
         self.health = 100
         self.armor = 0
         self.direction = [0, 0] # dx, dy
-        img = pygame.image.load(os.path.join("sprites", "test.png"))
-        self.image = img
+        self.name = "taylor"
+        self.images = []
+        for i in range(4):
+            img = pygame.image.load(os.path.join("images", f"{self.name}{str(i)}.png"))
+            img = pygame.transform.scale(img,(28,28))
+            self.images.append(img)
+        self.image = self.images[0]
         self.rect = self.image.get_rect()
         self.rect.x = self.rect.y = 0
 
@@ -26,10 +31,13 @@ class Hero(pygame.sprite.Sprite):
             [180,   225,    135]
         ]
         i, j = self.direction
+        if i == 0 and j == 1: self.image = self.images[3]
+        if i == 0 and j == -1: self.image = self.images[0]
+        if i == 1 and j == 0: self.image = self.images[1]
+        if i == -1 and j == 0: self.image = self.images[2]
         angle = angles[i][j] * math.pi / 180
         self.dx = self.speed * math.cos(angle)
         self.dy = self.speed * math.sin(angle)
-        print(f"dx = {self.dx}, dy = {self.dy}")
         self.rect.x += self.dx
         self.rect.y += self.dy
 
