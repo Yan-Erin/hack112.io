@@ -1,9 +1,6 @@
 import pygame
 import os
 import math, Walls
-def distance(x0,x1,y0,y1):
-    return ((x0-x1)**2 + (y0-y1)**2)**0.5
-
 def checkcollision(x,y,w,h,x2,y2,w2,h2):
     if x + w >= x2 and y + h >= y2 and x <= x2 + w2 and y <= y2 + h2:
         print("collided")
