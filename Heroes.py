@@ -1,6 +1,15 @@
 import pygame
 import os
-import math
+import math, Walls
+def distance(x0,x1,y0,y1):
+    return ((x0-x1)**2 + (y0-y1)**2)**0.5
+
+def checkcollision(x,y,w,h,x2,y2,w2,h2):
+    if x + w >= x2 and y + h >= y2 and x <= x2 + w2 and y <= y2 + h2:
+        print("collided")
+        return True
+    else:
+        return False
 
 class Hero(pygame.sprite.Sprite):
 
@@ -38,6 +47,12 @@ class Hero(pygame.sprite.Sprite):
         self.dy = self.speed * math.sin(angle)
         self.rect.x += self.dx
         self.rect.y += self.dy
+        for key in Walls.walls:
+            x,y = Walls.getCellBounds(key[0],key[1])
+            if checkcollision(self.rect.x, self.rect.y, 28, 28, x, y, 20, 20):
+                self.rect.x -= self.dx
+                self.rect.y -= self.dy
+
 
     def attack(self):
         pass

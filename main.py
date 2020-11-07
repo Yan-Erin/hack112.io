@@ -20,11 +20,12 @@ player2.rect.y = 400
 player_list.add(player2)
 startImg= pygame.image.load('images/splashScreen.jpg')
 startImg = pygame.transform.scale(startImg, (1010, 510))
+intructionsImg = pygame.image.load('images/splashScreen.jpg')
+intructionsImg = pygame.transform.scale(intructionsImg, (1010, 510))
 
 def startScreen(screen, intro):
     while intro==True:
         screen.blit(startImg, (0,0))
-        pygame.draw.rect(screen,(100,100,100),[1000/2,500/2,10,10])
         pygame.display.update()
         for event in pygame.event.get():
             mouse = pygame.mouse.get_pos()
@@ -32,6 +33,15 @@ def startScreen(screen, intro):
                 intro = False
 
 startScreen(screen, True)
+def instructionsScreen(screen, start):
+    while start== True:
+        screen.blit(intructionsImg, (0,0))
+        pygame.display.update()
+        for event in pygame.event.get():
+            mouse = pygame.mouse.get_pos()
+            if event.type==pygame.MOUSEBUTTONDOWN:
+                start = False
+instructionsScreen(screen, True)
 
 while not done:
     for event in pygame.event.get():
