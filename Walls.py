@@ -51,23 +51,13 @@ def Heart(row,col,screen):
     (x, y) = getCellBounds(row,col)
     pygame.draw.rect(screen, (255,0,0), pygame.Rect(x,y,20,20))
 
-def isValidWall(x,y,walls,chosenPiece):
-    if (x,y) in walls:
-        return False
-    for i in range(len(chosenPiece)):
-        for j in range(len(chosenPiece[i])):
-            if chosenPiece[i][j] and (((x+i+1, y+j+1) in walls) or ((x+i, y+j-3) in walls) or ((x+i-3, y+j) in walls) or ((x+i-3, y+j-3) in walls) or ((x+i, y+j+3) in walls) or ((x+i+3, y+j) in walls) or ((x+i+2, y+j+2) in walls) or ((x+i-1, y+j)in walls) or ((x+i, y+j-1)in walls) or ((x+i-1, y+j-1)in walls) or((x+i-2, y+j-2)in walls) or ((x+i, y+j-2)in walls) or ((x+i-2, y+j)in walls) or ((x+i+1, y+j)in walls) or ((x+i, y+j+1)in walls)):
-                return False
-    return True
+
 def makeWalls(numOfPieces):
     walls=set()
     for i in range( numOfPieces):
         chosenPiece=random.choice(wallPieces)
-        x=random.randint(0,20)
+        x=random.randint(0,22)
         y=random.randint(0,47)
-        while (not isValidWall(x,y, walls, chosenPiece)):
-            x=random.randint(0,22)
-            y=random.randint(0,47)
         for w in range(len(chosenPiece)):
             for j in range(len(chosenPiece[0])):
                 if chosenPiece[w][j]:
