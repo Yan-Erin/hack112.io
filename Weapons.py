@@ -18,7 +18,7 @@ class Plane(Projectile):
         self.damage = 5
         self.speed = 5
         self.image = pygame.image.load(os.path.join("images", ".png"))
-        Projectile.__init__(self, x, y direction)
+        Projectile.__init__(self, x, y, direction)
 
 
 class Book(Projectile):

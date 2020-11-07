@@ -1,5 +1,5 @@
 import pygame
-import Walls, Heroes, pickups
+import Walls, Heroes, Pickups
 
 pygame.init()
 screen = pygame.display.set_mode((1010, 510))
@@ -93,7 +93,7 @@ while not done:
 
     screen.fill((0, 0, 0))
     Walls.redrawAll(screen)
-    pickups.redrawAll (screen)
+    Pickups.redrawAll (screen)
     player1.update()
     player_list.draw(screen)
     pygame.draw.rect(screen, (150,150,150), (player1.rect.x,player1.rect.y-5, 28, 5))
