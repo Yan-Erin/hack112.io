@@ -22,7 +22,10 @@ startImg= pygame.image.load('images/splashScreen.jpg')
 startImg = pygame.transform.scale(startImg, (1010, 510))
 intructionsImg = pygame.image.load('images/instructionsScreen.jpg')
 intructionsImg = pygame.transform.scale(intructionsImg, (1010, 510))
-
+gameover1=  pygame.image.load('images/gameover1.jpg')
+gameover1 = pygame.transform.scale(gameover1, (1010, 510))
+gameover2=  pygame.image.load('images/gameover2.jpg')
+gameover2 = pygame.transform.scale(gameover2, (1010, 510))
 def startScreen(screen, intro):
     while intro==True:
         screen.blit(startImg, (0,0))
@@ -49,6 +52,13 @@ def instructionsScreen(screen, start):
                 pygame.quit()
 instructionsScreen(screen, True)
 
+def endScreen(name,screen):
+    if name=="taylor":
+        screen.blit(gameover1, (0,0))
+        pygame.display.update()
+    else:
+        screen.blit(gameover2, (0,0))
+        pygame.display.update()
 while not done:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -90,5 +100,9 @@ while not done:
     pygame.draw.rect(screen, (255,0,0), (player1.rect.x,player1.rect.y-5,(28*(.01*player1.health)),5))
     pygame.draw.rect(screen, (150,150,150), (player2.rect.x,player2.rect.y-5,28, 5))
     pygame.draw.rect(screen, (255,0,0), (player2.rect.x,player2.rect.y-5, (28*(.01*player2.health)), 5))
+    if player1.health==0:
+        endScreen("taylor",screen)
+    elif player2.health==0:
+        endScreen("mike",screen)
     pygame.display.flip()
     clock.tick(FPS)
