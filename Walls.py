@@ -40,14 +40,6 @@ cabinetImg = pygame.transform.scale(cabinetImg, (18, 20))
 chairImg = pygame.image.load('images/chair.png')
 chairImg = pygame.transform.scale(chairImg, (18, 20))
 
-def character1(row, col):
-    (x, y) = getCellBounds(row, col)
-    screen.blit(kozImg, (x,y))
-
-def character2(row, col):
-    (x, y) = getCellBounds(row, col)
-    screen.blit(taylorImg, (x,y))
-
 def getCellBounds(row,col):
     y1= row*20 + margin
     x1= col*20 + margin
