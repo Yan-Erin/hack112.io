@@ -2,8 +2,8 @@ import pygame
 import Walls
 import pickups
 pygame.init()
-screen = pygame.display.set_mode((500, 500))
 done = False
+screen = pygame.display.set_mode((1010, 510))
 Walls.redrawAll(screen)
 while not done:
     for event in pygame.event.get():
