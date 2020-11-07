@@ -4,7 +4,7 @@ import Walls, Heroes
 pygame.init()
 screen = pygame.display.set_mode((1010, 510))
 done = False
-FPS = 30
+FPS = 60
 clock = pygame.time.Clock()
 
 player1 = Heroes.Kosbie()
@@ -19,7 +19,7 @@ while not done:
         if event.type == pygame.QUIT:
             done = True
             pygame.quit()
-            
+
     keys = pygame.key.get_pressed()
     if keys[pygame.K_w]: player1.direction[1] = 1
     elif keys[pygame.K_s]: player1.direction[1] = -1
@@ -35,4 +35,4 @@ while not done:
     player1.update()
     player_list.draw(screen)
     pygame.display.flip()
-    clock.tick(60)
+    clock.tick(FPS)
