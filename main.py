@@ -34,8 +34,8 @@ def startScreen(screen, intro):
             if event.type == pygame.QUIT:
                 done = True
                 pygame.quit()
-
 startScreen(screen, True)
+
 def instructionsScreen(screen, start):
     while start== True:
         screen.blit(intructionsImg, (0,0))
