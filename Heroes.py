@@ -24,7 +24,7 @@ class Hero(pygame.sprite.Sprite):
         self.rect.x = self.rect.y = 0
 
     def move(self):
-        if isLegal(stuff, location):
+        if True:
             angles = [
                 [None,  270,    90],
                 [0,     315,    45],
