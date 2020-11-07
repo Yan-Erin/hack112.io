@@ -10,22 +10,23 @@ class Hero(pygame.sprite.Sprite):
         self.y = 0
         self.dx = 0
         self.dy = 0
-        self.speed = 5
+        self.speed = 2
         self.health = 100
         self.armor = 0
-        self.movement = [0, 0] # dx, dy
+        self.direction = [0, 0] # dx, dy
         img = pygame.image.load(os.path.join("sprites", "test.png"))
         self.image = img
         self.rect = self.image.get_rect()
-        self.rect.x = self.rect.x = 0
+        self.rect.x = self.rect.y = 0
 
     def move(self):
-        if self.movement[0] == 0 and self.movement[1] != 0:
-            if self.movement[1] == 1: angle = 270
-            else: angle = 90
-            angle *= math.pi / 180
-        else:
-            angle = math.atan(self.movement[1] / self.movement[0])
+        angles = [
+            [None,  270,    90],
+            [0,     315,    45],
+            [180,   225,    135]
+        ]
+        i, j = self.direction
+        angle = angles[i][j] * math.pi / 180
         self.dx = self.speed * math.cos(angle)
         self.dy = self.speed * math.sin(angle)
         self.rect.x += self.dx
