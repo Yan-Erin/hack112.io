@@ -3,35 +3,19 @@ import random
 
 done = False
 margin=5
-iPiece = [
-    [  True,  True,  True,  True ]
+boxPiece = [
+    [  True,  True,  False,  False, True, True],
+    [  True,  False,  False,  False, False, True],
+    [  False,  False,  False,  False, False, False],
+    [  False,  False,  False,  False, False, False],
+    [  True,  False,  False,  False, False, True],
+    [  True,  True,  False,  False, True, True],
     ]
+emptyPiece = [ [False] ]
 
-jPiece = [
-    [  True, False, False ],
-    [  True,  True,  True ]
-    ]
 
-lPiece = [
-    [ False, False,  True ],
-    [  True,  True,  True ]
-    ]
 
-sPiece = [
-    [ False,  True,  True ],
-    [  True,  True, False ]
-    ]
-
-tPiece = [
-    [ False,  True, False ],
-    [  True,  True,  True ]
-    ]
-
-zPiece = [
-    [  True,  True, False ],
-    [ False,  True,  True ]
-    ]
-wallPieces= [iPiece,jPiece, lPiece,sPiece,tPiece, zPiece]
+wallPieces= [emptyPiece]
 
 obstacle={}
 
@@ -54,7 +38,7 @@ def Heart(row,col,screen):
 
 def makeWalls(numOfPieces):
     walls=set()
-    for i in range( numOfPieces):
+    for i in range(numOfPieces):
         chosenPiece=random.choice(wallPieces)
         x=random.randint(0,22)
         y=random.randint(0,47)
