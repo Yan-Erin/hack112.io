@@ -12,13 +12,7 @@ class Hero(pygame.sprite.Sprite):
         self.health = 100
         self.armor = 0
         self.direction = [0, 0] # dx, dy
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
         self.inventory = ["plane", "sneakers"]
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
         self.images = []
         for i in range(4):
             img = pygame.image.load(os.path.join("images", f"{self.name}{str(i)}.png"))
@@ -46,7 +40,7 @@ class Hero(pygame.sprite.Sprite):
         self.rect.y += self.dy
 
     def attack(self):
-
+        pass
 
 
 class Kosbie(Hero):
