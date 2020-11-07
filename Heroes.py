@@ -33,6 +33,7 @@ class Hero(pygame.sprite.Sprite):
         self.rect.x += self.dx
         self.rect.y += self.dy
 
+
 class Kosbie(Hero):
 
     def specialAbility(self):

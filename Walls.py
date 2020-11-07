@@ -80,6 +80,6 @@ def redrawAll(screen):
     for row in range(500//20):
         for col in range (1000//20):
             (x1,y1)= getCellBounds(row,col)
-            pygame.draw.rect(screen, (255,255,255), pygame.Rect(x1,y1,20,20),1)
+            pygame.draw.rect(screen, (100,100,100), pygame.Rect(x1,y1,20,20),1)
     for i in walls:
         Wall(i[0],i[1],walls[i], screen)

@@ -1,13 +1,18 @@
 import Walls
 import random
 import pygame
+
+heartIcon= pygame.image.load('images/heart.png')
+heartIcon = pygame.transform.scale(heartIcon, (20, 20))
+blueIcon = pygame.image.load('images/bluething.png')
+blueIcon = pygame.transform.scale(blueIcon, (20, 20))
 pickups={}
 def SizeBooster(row,col,screen):
     (x, y) = Walls.getCellBounds(row,col)
-    pygame.draw.rect(screen, (0,0,255), pygame.Rect(x,y,20,20))
+    screen.blit(blueIcon, (x,y))
 def Heart(row,col,screen):
     (x, y) = Walls.getCellBounds(row,col)
-    pygame.draw.rect(screen, (255,0,0), pygame.Rect(x,y,20,20))
+    screen.blit(heartIcon, (x,y))
 
 def makeSizeBoosters(numOfPieces):
     sizeBoosters=set()
