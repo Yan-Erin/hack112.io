@@ -1,7 +1,5 @@
 import pygame
 import random
-from sys import exit
-
 pygame.init()
 screen = pygame.display.set_mode((1010, 510))
 done = False
@@ -37,13 +35,6 @@ zPiece = [
 wallPieces= [iPiece,jPiece, lPiece,sPiece,tPiece, zPiece]
 
 obstacle={}
-
-elbowImg = pygame.image.load('elbows.jpg')
-elbowImg = pygame.transform.scale(elbowImg, (20, 20))
-
-def elbow(row, col):
-    (x, y) = getCellBounds(row, col)
-    screen.blit(elbowImg, (x,y))
 
 def getCellBounds(row,col):
     y1= row*(20) +margin
@@ -104,27 +95,21 @@ makeHearts(15)
 
 
 while not done:
-    for event in pygame.event.get():
-        for row in range(500//20):
-            for col in range (1000//20):
-                (x1,y1)= getCellBounds(row,col)
-                pygame.draw.rect(screen, (255,255,255), pygame.Rect(x1,y1,20,20),1)
-    for i in obstacle:
-        for j in obstacle[i]:
-            if i == "Walls":
-                Wall(j[0],j[1])
-            elif i=="SizeBoosters":
-                SizeBooster(j[0],j[1])
-            elif i== "Hearts":
-                Heart(j[0],j[1])
-    elbow(10, 10)
-    elbow(15, 15)
+        for event in pygame.event.get():
+            for row in range(500//20):
+                for col in range (1000//20):
+                    (x1,y1)= getCellBounds(row,col)
+                    pygame.draw.rect(screen, (255,255,255), pygame.Rect(x1,y1,20,20),1)
+        for i in obstacle:
+            for j in obstacle[i]:
+                if i == "Walls":
+                    Wall(j[0],j[1])
+                elif i=="SizeBoosters":
+                    SizeBooster(j[0],j[1])
+                elif i== "Hearts":
+                    Heart(j[0],j[1])
+        if event.type == pygame.QUIT:
+            done = True
+        pygame.display.flip()
 
-    if event.type == pygame.QUIT:
-        done = True
-    pygame.display.flip()
-
-pygame.display.quit()  
 pygame.quit()
-exit()
-
