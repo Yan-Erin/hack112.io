@@ -21,15 +21,15 @@ while not done:
             pygame.quit()
 
     keys = pygame.key.get_pressed()
-    if keys[pygame.K_w]: player1.direction[1] = 1
-    elif keys[pygame.K_s]: player1.direction[1] = -1
+    if keys[pygame.K_w] and player1.rect.y > 0: player1.direction[1] = 1
+    elif keys[pygame.K_s] and player1.rect.y + 28 < 505: player1.direction[1] = -1
     else: player1.direction[1] = 0
-    if keys[pygame.K_d]: player1.direction[0] = 1
-    elif keys[pygame.K_a]: player1.direction[0] = -1
+    if keys[pygame.K_d] and player1.rect.x + 28 < 1005: player1.direction[0] = 1
+    elif keys[pygame.K_a] and player1.rect.x > 0: player1.direction[0] = -1
     else: player1.direction[0] = 0
 
     if player1.direction != [0, 0]: player1.move()
-
+ 
     screen.fill((0, 0, 0))
     Walls.redrawAll(screen)
     pickups.redrawAll (screen)
