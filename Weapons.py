@@ -8,6 +8,9 @@ class Projectile(pygame.sprite.Sprite):
         self.dx = None
         self.dy = None
 
+    def move(self):
+        pass
+
 
 class Plane(Projectile):
 
