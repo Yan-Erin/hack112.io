@@ -14,7 +14,6 @@ class Hero(pygame.sprite.Sprite):
         self.health = 100
         self.armor = 0
         self.direction = [0, 0] # dx, dy
-        self.name = "taylor"
         self.images = []
         for i in range(4):
             img = pygame.image.load(os.path.join("images", f"{self.name}{str(i)}.png"))
@@ -47,10 +46,17 @@ class Hero(pygame.sprite.Sprite):
 
 
 class Kosbie(Hero):
+    def __init__(self):
+        self.name = "koz"
+        Hero.__init__(self)
 
     def specialAbility(self):
         pass
 
 class Taylor(Hero):
+    def __init__(self):
+        self.name = "taylor"
+        Hero.__init__(self)
+
     def specialAbility(self):
         pass
