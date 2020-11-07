@@ -52,12 +52,10 @@ def Heart(row,col):
     (x, y) = getCellBounds(row,col)
     pygame.draw.rect(screen, (255,0,0), pygame.Rect(x,y,20,20))
 
-
 def makeWalls(numOfPieces):
     walls=set()
     for i in range( numOfPieces):
         chosenPiece=random.choice(wallPieces)
-        x=random.randint(0,22)
         y=random.randint(0,47)
         for w in range(len(chosenPiece)):
             for j in range(len(chosenPiece[0])):
