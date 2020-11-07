@@ -6,14 +6,19 @@ class Hero(pygame.sprite.Sprite):
 
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-        self.x = 0
-        self.y = 0
         self.dx = 0
         self.dy = 0
-        self.speed = 2.2
+        self.speed = 3
         self.health = 100
         self.armor = 0
         self.direction = [0, 0] # dx, dy
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+        self.inventory = ["plane", "sneakers"]
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
         self.images = []
         for i in range(4):
             img = pygame.image.load(os.path.join("images", f"{self.name}{str(i)}.png"))
@@ -24,25 +29,24 @@ class Hero(pygame.sprite.Sprite):
         self.rect.x = self.rect.y = 0
 
     def move(self):
-        if isLegal(stuff, location):
-            angles = [
-                [None,  270,    90],
-                [0,     315,    45],
-                [180,   225,    135]
-            ]
-            i, j = self.direction
-            if i == 0 and j == 1: self.image = self.images[3]
-            if i == 0 and j == -1: self.image = self.images[0]
-            if i == 1 and j == 0: self.image = self.images[1]
-            if i == -1 and j == 0: self.image = self.images[2]
-            angle = angles[i][j] * math.pi / 180
-            self.dx = self.speed * math.cos(angle)
-            self.dy = self.speed * math.sin(angle)
-            self.rect.x += self.dx
-            self.rect.y += self.dy
-        else:
-            self.rect.x -= self.dx
-            self.rect.y -= self.dy
+        angles = [
+            [None,  270,    90],
+            [0,     315,    45],
+            [180,   225,    135]
+        ]
+        i, j = self.direction
+        if i == 0 and j == 1: self.image = self.images[3]
+        if i == 0 and j == -1: self.image = self.images[0]
+        if i == 1 and j == 0: self.image = self.images[1]
+        if i == -1 and j == 0: self.image = self.images[2]
+        angle = angles[i][j] * math.pi / 180
+        self.dx = self.speed * math.cos(angle)
+        self.dy = self.speed * math.sin(angle)
+        self.rect.x += self.dx
+        self.rect.y += self.dy
+
+    def attack(self):
+
 
 
 class Kosbie(Hero):

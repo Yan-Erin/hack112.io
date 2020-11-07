@@ -3,35 +3,29 @@ import random
 from sys import exit
 
 margin=5
-iPiece = [
-    [  True,  True,  True,  True ]
-    ]
+rightPiece = [
+    [  True,  True,  True,  True],
+    [  False,  False,  False,  True],
+    [  False,  False,  False,  True],
+    [  False,  False,  False,  True]
+]
 
-jPiece = [
-    [  True, False, False ],
-    [  True,  True,  True ]
-    ]
+cubePiece = [
+    [   True,   True],
+    [   True,   True]
+]
 
-lPiece = [
-    [ False, False,  True ],
-    [  True,  True,  True ]
-    ]
+fortPiece = [
+    [   True,   True,   True,   True,   True],
+    [   False,   False,   False,   False,   True],
+    [   False,   False,   False,   False,   False],
+    [   True,   False,   False,   False,   False],
+    [   True,   True,   True,   True,   True]
+]
 
-sPiece = [
-    [ False,  True,  True ],
-    [  True,  True, False ]
-    ]
+longPiece = [ [True], [True], [True], [True] ]
 
-tPiece = [
-    [ False,  True, False ],
-    [  True,  True,  True ]
-    ]
-
-zPiece = [
-    [  True,  True, False ],
-    [ False,  True,  True ]
-    ]
-wallPieces= [iPiece,jPiece, lPiece,sPiece,tPiece, zPiece]
+wallPieces = [fortPiece, longPiece, cubePiece, rightPiece]
 
 
 cabinetImg= pygame.image.load('images/cabinet.png')
@@ -73,7 +67,7 @@ def makeWalls(numOfPieces):
             for j in range(len(chosenPiece[0])):
                 if chosenPiece[w][j]:
                     walls[(x+w,y+j)]= random.choice(l)
-makeWalls(35)
+makeWalls(20)
 
 
 def redrawAll(screen):
