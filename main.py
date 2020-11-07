@@ -19,6 +19,7 @@ while not done:
         if event.type == pygame.QUIT:
             done = True
             pygame.quit()
+            
     keys = pygame.key.get_pressed()
     if keys[pygame.K_w]: player1.direction[1] = 1
     elif keys[pygame.K_s]: player1.direction[1] = -1
@@ -26,6 +27,7 @@ while not done:
     if keys[pygame.K_d]: player1.direction[0] = 1
     elif keys[pygame.K_a]: player1.direction[0] = -1
     else: player1.direction[0] = 0
+
     if player1.direction != [0, 0]: player1.move()
 
     screen.fill((0, 0, 0))

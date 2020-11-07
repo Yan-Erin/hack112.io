@@ -29,6 +29,7 @@ class Hero(pygame.sprite.Sprite):
         angle = angles[i][j] * math.pi / 180
         self.dx = self.speed * math.cos(angle)
         self.dy = self.speed * math.sin(angle)
+        print(f"dx = {self.dx}, dy = {self.dy}")
         self.rect.x += self.dx
         self.rect.y += self.dy
 
