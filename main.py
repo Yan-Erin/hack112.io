@@ -1,5 +1,5 @@
 import pygame
-import Walls, Heroes, Pickups
+import Walls, Heroes, pickups
 
 pygame.init()
 screen = pygame.display.set_mode((1010, 510))
@@ -31,7 +31,6 @@ def startScreen(screen, intro):
         screen.blit(startImg, (0,0))
         pygame.display.update()
         for event in pygame.event.get():
-            mouse = pygame.mouse.get_pos()
             if event.type==pygame.MOUSEBUTTONDOWN:
                 intro = False
             if event.type == pygame.QUIT:
@@ -44,7 +43,10 @@ def instructionsScreen(screen, start):
         screen.blit(intructionsImg, (0,0))
         pygame.display.update()
         for event in pygame.event.get():
+<<<<<<< Updated upstream
             mouse = pygame.mouse.get_pos()
+=======
+>>>>>>> Stashed changes
             if event.type==pygame.MOUSEBUTTONDOWN:
                 start = False
             if event.type == pygame.QUIT:
@@ -93,9 +95,14 @@ while not done:
 
     screen.fill((0, 0, 0))
     Walls.redrawAll(screen)
+<<<<<<< Updated upstream
     Pickups.redrawAll (screen)
     player1.update()
     player_list.draw(screen)
+=======
+    pickups.redrawAll (screen)
+    sprites_list.draw(screen)
+>>>>>>> Stashed changes
     pygame.draw.rect(screen, (150,150,150), (player1.rect.x,player1.rect.y-5, 28, 5))
     pygame.draw.rect(screen, (255,0,0), (player1.rect.x,player1.rect.y-5,(28*(.01*player1.health)),5))
     pygame.draw.rect(screen, (150,150,150), (player2.rect.x,player2.rect.y-5,28, 5))
