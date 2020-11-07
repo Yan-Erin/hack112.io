@@ -20,4 +20,10 @@ class Hero(pygame.hero.Hero):
         self.x += self.dx
         self.y += self.dy
 
-        
+class Kosbie(Hero):
+    def specialAbility(self):
+        pass
+
+class Taylor(Hero):
+    def specialAbility(self):
+        pass
