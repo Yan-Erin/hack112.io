@@ -1,5 +1,7 @@
 import pygame
 import random
+from sys import exit
+
 pygame.init()
 screen = pygame.display.set_mode((1010, 510))
 done = False
@@ -36,15 +38,33 @@ wallPieces= [iPiece,jPiece, lPiece,sPiece,tPiece, zPiece]
 
 obstacle={}
 
+kozImg = pygame.image.load('koz.png')
+kozImg = pygame.transform.scale(kozImg, (40,40))
+
+taylorImg = pygame.image.load('taylor.png')
+taylorImg = pygame.transform.scale(taylorImg, (40, 40))
+
+chairImg = pygame.image.load('chair.png')
+chairImg = pygame.transform.scale(chairImg, (20, 20))
+
+def character1(row, col):
+    (x, y) = getCellBounds(row, col)
+    screen.blit(kozImg, (x,y))
+
+def character2(row, col):
+    (x, y) = getCellBounds(row, col)
+    screen.blit(taylorImg, (x,y))
+
 def getCellBounds(row,col):
-    y1= row*(20) +margin
+    y1= row*20 + margin
     x1= col*20 + margin
     return (x1,y1)
     
 
 def Wall(row,col):
     (x, y) = getCellBounds(row,col)
-    pygame.draw.rect(screen, (255,255,255), pygame.Rect(x,y,20,20))
+    screen.blit(chairImg, (x,y))
+    #pygame.draw.rect(screen, (255,255,255), pygame.Rect(x,y,20,20))
 def SizeBooster(row,col):
     (x, y) = getCellBounds(row,col)
     pygame.draw.rect(screen, (0,0,255), pygame.Rect(x,y,20,20))
@@ -56,6 +76,7 @@ def makeWalls(numOfPieces):
     walls=set()
     for i in range( numOfPieces):
         chosenPiece=random.choice(wallPieces)
+        x=random.randint(0,22)
         y=random.randint(0,47)
         for w in range(len(chosenPiece)):
             for j in range(len(chosenPiece[0])):
@@ -63,7 +84,6 @@ def makeWalls(numOfPieces):
                     walls.add((x+w,y+j))
     obstacle["Walls"]= walls
 makeWalls(35)
-
 
 
 def makeSizeBoosters(numOfPieces):
@@ -93,21 +113,27 @@ makeHearts(15)
 
 
 while not done:
-        for event in pygame.event.get():
-            for row in range(500//20):
-                for col in range (1000//20):
-                    (x1,y1)= getCellBounds(row,col)
-                    pygame.draw.rect(screen, (255,255,255), pygame.Rect(x1,y1,20,20),1)
-        for i in obstacle:
-            for j in obstacle[i]:
-                if i == "Walls":
-                    Wall(j[0],j[1])
-                elif i=="SizeBoosters":
-                    SizeBooster(j[0],j[1])
-                elif i== "Hearts":
-                    Heart(j[0],j[1])
-        if event.type == pygame.QUIT:
-            done = True
-        pygame.display.flip()
+    for event in pygame.event.get():
+        for row in range(500//20):
+            for col in range (1000//20):
+                (x1,y1)= getCellBounds(row,col)
+                pygame.draw.rect(screen, (255,255,255), pygame.Rect(x1,y1,20,20),1)
+    for i in obstacle:
+        for j in obstacle[i]:
+            if i == "Walls":
+                Wall(j[0],j[1])
+            elif i=="SizeBoosters":
+                SizeBooster(j[0],j[1])
+            elif i== "Hearts":
+                Heart(j[0],j[1])
+    character1(10, 10)
+    character2(10, 14)
 
+    if event.type == pygame.QUIT:
+        done = True
+    pygame.display.flip()
+
+pygame.display.quit()  
 pygame.quit()
+exit()
+
