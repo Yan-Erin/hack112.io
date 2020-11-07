@@ -2,7 +2,8 @@ import pygame
 import random
 from sys import exit
 
-
+pygame.init()
+screen = pygame.display.set_mode((1010, 510))
 done = False
 margin=5
 iPiece = [
@@ -35,9 +36,23 @@ zPiece = [
     ]
 wallPieces= [iPiece,jPiece, lPiece,sPiece,tPiece, zPiece]
 
-chairImg = pygame.image.load('images/chair.png')
+
+kozImg = pygame.image.load('koz.png')
+kozImg = pygame.transform.scale(kozImg, (40,40))
+
+taylorImg = pygame.image.load('taylor.png')
+taylorImg = pygame.transform.scale(taylorImg, (40, 40))
+
+chairImg = pygame.image.load('chair.png')
 chairImg = pygame.transform.scale(chairImg, (20, 20))
 
+def character1(row, col):
+    (x, y) = getCellBounds(row, col)
+    screen.blit(kozImg, (x,y))
+
+def character2(row, col):
+    (x, y) = getCellBounds(row, col)
+    screen.blit(taylorImg, (x,y))
 
 def getCellBounds(row,col):
     y1= row*20 + margin
@@ -45,9 +60,9 @@ def getCellBounds(row,col):
     return (x1,y1)
     
 
-def Wall(row,col,screen):
+def Wall(row,col):
     (x, y) = getCellBounds(row,col)
-    screen.blit(chairImg, (x,y))
+    pygame.draw.rect(screen, (255,255,255), pygame.Rect(x,y,20,20))
 
 def isValidWall(x,y,walls,chosenPiece):
     if (x,y) in walls:
@@ -64,9 +79,6 @@ def makeWalls(numOfPieces):
         chosenPiece=random.choice(wallPieces)
         x=random.randint(0,22)
         y=random.randint(0,47)
-        while not (isValidWall(x,y,walls,chosenPiece)):
-            x=random.randint(0,20)
-            y=random.randint(0,47)
         for w in range(len(chosenPiece)):
             for j in range(len(chosenPiece[0])):
                 if chosenPiece[w][j]:
