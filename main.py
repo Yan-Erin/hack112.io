@@ -57,10 +57,10 @@ instructionsScreen(screen, True)
 
 def endScreen(name,screen):
     if name=="taylor":
-        screen.blit(gameover1, (0,0))
+        screen.blit(gameover2, (0,0))
         pygame.display.update()
     else:
-        screen.blit(gameover2, (0,0))
+        screen.blit(gameover1, (0,0))
         pygame.display.update()
 
 while not done:
