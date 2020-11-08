@@ -10,7 +10,7 @@ class Projectile(pygame.sprite.Sprite):
         self.dx = None
         self.dy = None
         self.damage = 10
-        self.speed = 5
+        self.speed = 8
         self.images = []
         for i in range(4):
             img = pygame.image.load(os.path.join("images", f"{self.name}{str(i)}.png"))
@@ -35,11 +35,7 @@ class Projectile(pygame.sprite.Sprite):
         self.dy = self.speed * math.sin(angle)
         self.rect.x += self.dx
         self.rect.y += self.dy
-        # for key in Walls.walls:
-        #     x,y = Walls.getCellBounds(key[0],key[1])
-        #     if checkcollision(self.rect.x, self.rect.y, 28, 28, x, y, 20, 20):
-        #         self.rect.x -= self.dx
-        #         self.rect.y -= self.dy
+                
 
 
 class Plane(Projectile):
