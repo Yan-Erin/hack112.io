@@ -6,11 +6,36 @@ import Walls
 
 def checkcollision(x,y,w,h,x2,y2,w2,h2):
     if x + w >= x2 and y + h >= y2 and x <= x2 + w2 and y <= y2 + h2:
-        print("collided")
         return True
     else:
         return False
 
+def hitBlue(player, x, y, s):
+    L = list(s["SizeBoosters"])
+    i = 0
+    while i < len(L):
+        (x1,y1)= Walls.getCellBounds(L[i][0], L[i][1])
+        if checkcollision(x, y, 28, 28, x1,y1, 20, 20):
+            L.pop(i)
+            s["SizeBoosters"]= L
+            player.armor += 1
+        else:
+            i += 1
+    
+def hitHeart(player, x, y, s):
+    L = list(s["Hearts"])
+    i = 0
+    while i < len(L):
+        (x1,y1)= Walls.getCellBounds(L[i][0], L[i][1])
+        if checkcollision(x, y, 28, 28, x1,y1, 20, 20):
+            L.pop(i)
+            s["Hearts"]= L
+            if player.health<=90:
+                player.health += 10
+            elif player.health>90:
+                player.health+=(100-player.health)
+        else:
+            i += 1
 class Hero(pygame.sprite.Sprite):
 
     def __init__(self):
@@ -21,7 +46,7 @@ class Hero(pygame.sprite.Sprite):
         self.health = 100
         self.armor = 0
         self.direction = [0, 0] # dx, dy
-        self.facing = [0, 0]
+        self.facing = [0, -1]
         self.images = []
         for i in range(4):
             img = pygame.image.load(os.path.join("images", f"{self.name}{str(i)}.png"))

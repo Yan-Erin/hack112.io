@@ -62,6 +62,7 @@ def endScreen(name,screen):
     else:
         screen.blit(gameover2, (0,0))
         pygame.display.update()
+player1.health=50
 while not done:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -108,6 +109,12 @@ while not done:
     pygame.draw.rect(screen, (255,0,0), (player1.rect.x,player1.rect.y-5,(28*(.01*player1.health)),5))
     pygame.draw.rect(screen, (150,150,150), (player2.rect.x,player2.rect.y-5,28, 5))
     pygame.draw.rect(screen, (255,0,0), (player2.rect.x,player2.rect.y-5, (28*(.01*player2.health)), 5))
+    Heroes.hitBlue(player1, player1.rect.x,player1.rect.y, pickups.pickups)
+    Heroes.hitHeart(player1,player1.rect.x,player1.rect.y, pickups.pickups )
+    Heroes.hitBlue(player2, player2.rect.x,player2.rect.y, pickups.pickups)
+    Heroes.hitHeart(player2,player2.rect.x,player2.rect.y, pickups.pickups )
+    
+    print(player1.armor)
     if player1.health==0:
         endScreen("taylor",screen)
     elif player2.health==0:

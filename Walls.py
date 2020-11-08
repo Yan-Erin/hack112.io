@@ -82,6 +82,9 @@ makeWalls(20)
 
 
 def redrawAll(screen):
-    screen.blit(bgImag, (5,5))
+    for row in range(25):
+        for col in range(50):
+            (x,y) =getCellBounds(row,col)
+            pygame.draw.rect(screen, (100,100,100), pygame.Rect(x,y,20,20),1)
     for i in walls:
         Wall(i[0],i[1],walls[i], screen)
