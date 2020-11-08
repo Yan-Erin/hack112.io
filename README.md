@@ -22,7 +22,7 @@ import pygame
 ```
 
 ## Visuals
-All of the images created in the game was made using Adobe Photoshop and drawn with... an apple trackpad rip :+1:
+All of the images created in the game were made using Adobe Photoshop and drawn with... an apple trackpad rip :'c
 
 ![**Figure 1:** Example assets that were used in game](images/graphics.jpg)
 
@@ -30,5 +30,6 @@ All of the images created in the game was made using Adobe Photoshop and drawn w
 
 ![**Figure 3:** Instructions to play the game](images/instructionsScreen.jpg)
 
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
+## Acknowledgements
+
+A big thank you to the TA's for hosting and answering all of our questions along the way! We learned so much about using Pygame through this project and really hope that you enjoy playing it as much as we enjoyed creating it :)
