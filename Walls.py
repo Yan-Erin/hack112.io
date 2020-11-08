@@ -72,7 +72,6 @@ def makeWalls(numOfPieces):
         while not (isValidWall(x,y,walls,chosenPiece)):
             x=random.randint(0,20)
             y=random.randint(0,47)
-            print(x,y)
         for w in range(len(chosenPiece)):
             for j in range(len(chosenPiece[0])):
                 if chosenPiece[w][j]:

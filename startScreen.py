@@ -4,7 +4,6 @@ def startScreen(screen, intro):
         startImg= pygame.image.load('images/splashScreen.jpg')
         startImg = pygame.transform.scale(startImg, (1010, 510))
         screen.blit(startImg, (0,0))
-        print('hello')
         pygame.draw.rect(screen,(100,100,100),[1000/2,500/2,10,10])
         for event in pygame.event.get():
             mouse = pygame.mouse.get_pos()
