@@ -92,6 +92,7 @@ class Hero(pygame.sprite.Sprite):
         if self.rect.x>980 or self.rect.y>480:
             self.rect.x -= self.dx
             self.rect.y -= self.dy
+            
 class Kosbie(Hero):
     def __init__(self):
         self.name = "koz"

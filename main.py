@@ -62,7 +62,7 @@ def endScreen(name,screen):
     else:
         screen.blit(gameover2, (0,0))
         pygame.display.update()
-player1.health=50
+
 while not done:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -94,6 +94,24 @@ while not done:
 
     if player1.direction != [0, 0]: player1.move()
     if player2.direction != [0, 0]: player2.move()
+
+    for key in Walls.walls:
+        x,y = Walls.getCellBounds(key[0],key[1])
+        if pencil and Heroes.checkcollision(pencil.rect.x, pencil.rect.y, pencil.rect.width, pencil.rect.height, x, y, 20, 20):
+            pencil_list.empty()
+            pencil = None
+        if plane and Heroes.checkcollision(plane.rect.x, plane.rect.y, plane.rect.width, plane.rect.height, x, y, 20, 20):
+            plane_list.empty()
+            plane = None
+
+    if pencil and Heroes.checkcollision(pencil.rect.x, pencil.rect.y, pencil.rect.width, pencil.rect.height, player1.rect.x, player1.rect.y, 28, 28):
+        player1.health -= pencil.damage - (player1.armor * 0.5)
+        pencil = None
+        pencil_list.empty()
+    if plane and Heroes.checkcollision(plane.rect.x, plane.rect.y, plane.rect.width, plane.rect.height, player2.rect.x, player2.rect.y, 28, 28):
+        player2.health -= plane.damage - (player2.armor * 0.5)
+        plane = None
+        plane_list.empty()
 
     if pencil: pencil.move()
     if plane: plane.move()
