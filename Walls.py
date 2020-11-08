@@ -54,9 +54,7 @@ def Wall(row,col, image, screen):
 def isValidWall(x,y,walls,chosenPiece):
     if (x,y) in walls:
         return False
-    if x in range(4) and y in range(4):
-        return False
-    if  x in range(35,50) and y in range(10,25):
+    if (x in range(4) and y in range(4)) or (30< x <50 and 10<y<25):
         return False
     for i in range(len(chosenPiece)):
         for j in range(len(chosenPiece[i])):
@@ -74,6 +72,7 @@ def makeWalls(numOfPieces):
         while not (isValidWall(x,y,walls,chosenPiece)):
             x=random.randint(0,20)
             y=random.randint(0,47)
+            print(x,y)
         for w in range(len(chosenPiece)):
             for j in range(len(chosenPiece[0])):
                 if chosenPiece[w][j]:
