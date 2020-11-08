@@ -133,9 +133,9 @@ while not done:
     Heroes.hitHeart(player2,player2.rect.x,player2.rect.y, pickups.pickups )
     
     print(player1.armor)
-    if player1.health==0:
+    if player1.health<=0:
         endScreen("taylor",screen)
-    elif player2.health==0:
+    elif player2.health<=0:
         endScreen("mike",screen)
     pygame.display.flip()
     clock.tick(FPS)
